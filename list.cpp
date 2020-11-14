@@ -5,6 +5,10 @@
 #include "list.h"
 
 List::List(const List &original) {
+	// What is the time complexity of this implementation?
+	// Can we do better?
+	for (Node* tmp = original._head; tmp != nullptr; tmp = tmp->next)
+		Insert(*tmp->book, _size);
 
 }
 
