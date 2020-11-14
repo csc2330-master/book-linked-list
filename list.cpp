@@ -22,7 +22,8 @@ List::List() {
 }
 
 List::~List() {
-
+	while (_size != 0)
+		Remove(0);
 }
 
 bool List::Insert(const Book &book, unsigned int position) {
