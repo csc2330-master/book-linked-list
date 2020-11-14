@@ -49,17 +49,32 @@ bool List::Remove(unsigned int position) {
 }
 
 int List::IndexOf(const Book &book) const {
-	return 0;
+	Node* tmp = _head;
+	for (int i = 0; i < _size; ++i) {
+		if (tmp->book->Equals(book))
+			return i;
+		tmp = tmp->next;
+	}
+	return -1;
 }
 
 Book *List::Get(unsigned int position) const {
-	return nullptr;
+	if (position >= _size)
+		return nullptr;
+	Node* tmp = _head;
+	for (int i = 0; i < position; ++i) {
+		tmp = tmp->next;
+	}
+	return tmp->book;
 }
 
 void List::Write(ostream &output) const {
-
+	for (Node* tmp = _head; tmp != nullptr; tmp = tmp->next) {
+		tmp->book->Write(output);
+		output << "\n";
+	}
 }
 
 size_t List::GetSize() const {
-	return 0;
+	return _size;
 }
