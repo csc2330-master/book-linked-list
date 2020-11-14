@@ -13,7 +13,8 @@ const List &List::operator=(const List &rhs) {
 }
 
 List::List() {
-
+	_head = nullptr;
+	_size = 0;
 }
 
 List::~List() {
