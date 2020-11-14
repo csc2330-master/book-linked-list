@@ -49,7 +49,32 @@ bool List::Insert(const Book &book, unsigned int position) {
 }
 
 bool List::Remove(unsigned int position) {
-	return false;
+	if (position >= _size)
+		return false;
+	Book* bookToRemove = nullptr;
+	Node* tmp = nullptr;
+	if (position == 0){
+		bookToRemove = _head->book;
+		_head->book = nullptr;
+		tmp = _head->next;
+		_head->next = nullptr;
+		delete _head;
+		_head = tmp;
+	}else{
+		tmp = _head;
+		for (unsigned int i = 0; i < position - 1; ++i) {
+			tmp = tmp->next;
+		}
+		Node* nodeToRemove = tmp->next;
+		bookToRemove =  nodeToRemove->book;
+		tmp->next = nodeToRemove->next;
+		nodeToRemove->next = nullptr;
+		nodeToRemove->book = nullptr;
+		delete nodeToRemove;
+	}
+	delete bookToRemove;
+	_size--;
+	return true;
 }
 
 int List::IndexOf(const Book &book) const {
