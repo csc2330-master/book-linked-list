@@ -25,6 +25,7 @@ public:
 	List();
 	~List();
 	bool Insert(const Book& book, unsigned int position);
+	void InsertSorted(const Book& book);
 	bool Remove(unsigned int position);
 	int IndexOf(const Book& book)const;
 	Book* Get(unsigned int position)const;

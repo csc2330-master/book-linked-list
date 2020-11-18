@@ -33,10 +33,13 @@ List* CommonBooks(const List& a, const List& b){
 	List* retVal = new List();
 	for (int i = 0; i < a.GetSize(); ++i) {
 		book1 = a.Get(i);
+		if (retVal->IndexOf(*book1) != -1)
+			continue;
 		for (int j = 0; j < b.GetSize(); ++j) {
 			book2 = b.Get(j);
 			if (book1->Equals(*book2)){
 				retVal->Insert(*book1, retVal->GetSize());
+				break;
 			}
 		}
 	}

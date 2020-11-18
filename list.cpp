@@ -108,3 +108,22 @@ void List::Write(ostream &output) const {
 size_t List::GetSize() const {
 	return _size;
 }
+
+void List::InsertSorted(const Book &book) {
+	Node* neo = new Node;
+	neo->book = new Book(book);
+	neo->next = nullptr;
+	if (_size == 0){
+		_head = neo;
+	}else if (neo->book->GetPrice() < _head->book->GetPrice()){
+		neo->next = _head;
+		_head = neo;
+	}else{
+		Node* tmp = _head;
+		while (tmp->next != nullptr && neo->book->GetPrice() > tmp->next->book->GetPrice())
+			tmp = tmp->next;
+		neo->next = tmp->next;
+		tmp->next = neo;
+	}
+	_size++;
+}
